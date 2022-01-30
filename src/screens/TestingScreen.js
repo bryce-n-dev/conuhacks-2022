@@ -4,7 +4,7 @@ import React from 'react';
 const TestingScreen = () => {
 
   const sendMessage = async () => {
-    fetch('http://localhost:4000/api/messages', {
+    fetch('https://conuhacks2022-339715.ue.r.appspot.com/api/messages', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
