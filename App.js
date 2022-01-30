@@ -14,10 +14,14 @@ export default function App() {
     <>
       <ApplicationProvider {...eva} theme={eva.light}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Input">
-            <Stack.Screen name="Dashboard" component={DashboardScreen} />
+          <Stack.Navigator initialRouteName="Dashboard">
+            <Stack.Screen name="Dashboard" component={DashboardScreen} options={{
+              headerShown: false,
+              title: 'Friends'
+            }} />
             <Stack.Screen name="Input" component={InputScreen} options={{
               title: '',
+              headerTintColor: '#000',
               headerStyle: {
                 backgroundColor: '#FBE7C5',
               },
