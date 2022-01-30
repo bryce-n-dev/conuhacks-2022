@@ -1,22 +1,51 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Alert } from 'react-native';
 import { ApplicationProvider, Text, Button, Divider, Input } from '@ui-kitten/components';
-import React from 'react';
+import React, { useState } from 'react';
 
-const InputScreen = () => {
+const InputScreen = ({ route, navigation }) => {
+  const [compliment, setCompliment] = useState('');
+  const phoneNumber = '+55555555';
+  //const { phoneNumber } = route.params;
+
+  const sendMessage = async () => {
+    fetch('https://conuhacks2022-339715.ue.r.appspot.com/api/messages', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        To: phoneNumber,
+        Body: compliment,
+      })
+    })
+      .then(() => {
+        setCompliment('');
+        Alert.alert("Compliment sent!");
+      })
+      .catch(err => {
+        console.log(err)
+        Alert.alert("Error! Compliment not sent. Please try again later. :(")
+      });
+  }
+
+
   return (
-    <View style ={styles.body}>
+    <View style={styles.body}>
       <View style={styles.content}>
-        <Text style={styles.titleStyle} category = 'h3'>Write your compliment!</Text>
-        <Input 
-        style={styles.input}
-        multiline={true}
-        textStyle={{ minHeight: 200 }}
-        placeholder='Compliments go over here :p'
+        <Text style={styles.titleStyle} category='h3'>Write your compliment!</Text>
+        <Input
+          style={styles.input}
+          multiline={true}
+          textStyle={{ minHeight: 200 }}
+          placeholder='Compliments go over here :p'
+          value={compliment}
+          onChangeText={setCompliment}
         />
         <Button
           title="Send"
           style={styles.sendButton}
-          onPress={() => Alert.alert('Simple Button pressed')}
+          onPress={sendMessage}
         ><Text style={styles.text}>SEND</Text></Button>
       </View>
     </View>
@@ -26,7 +55,7 @@ const InputScreen = () => {
 export default InputScreen;
 
 const styles = StyleSheet.create({
-  body:{
+  body: {
     backgroundColor: "#FBE7C5",
     flex: 1,
   },
@@ -45,7 +74,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   sendButton: {
-    borderColor:"#FCC7D9",
+    borderColor: "#FCC7D9",
     backgroundColor: "#FCC7D9",
     marginTop: 10,
     marginBottom: 30,
@@ -53,7 +82,7 @@ const styles = StyleSheet.create({
     marginRight: 30
   },
   recordButton: {
-    borderColor:"#FFC7C7",
+    borderColor: "#FFC7C7",
     backgroundColor: "#FFC7C7",
     marginTop: 50,
     marginBottom: 30,
