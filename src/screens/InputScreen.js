@@ -7,6 +7,16 @@ const InputScreen = ({ route, navigation }) => {
   const phoneNumber = '+55555555';
   //const { phoneNumber } = route.params;
 
+  const compliments = ['i love the way you code 🤩 ',
+    'Keep working hard, you are shining! ✨',
+    'When I look up the stars, I only see you 💫',
+    'you\'re as cool as a cucumber 😎',
+    'I appreciate and admire the person you are 🥰',
+    'You look marvelous today! 😍',
+    'you make me levitate 🕴',
+    'Keep the good work your majesty 👑',
+  ]
+
   const sendMessage = async () => {
     fetch('https://conuhacks2022-339715.ue.r.appspot.com/api/messages', {
       method: 'POST',
@@ -29,6 +39,9 @@ const InputScreen = ({ route, navigation }) => {
       });
   }
 
+  const generateCompliment = () => {
+    setCompliment(compliments[Math.floor(Math.random() * compliments.length)])
+  }
 
   return (
     <View style={styles.body}>
@@ -43,11 +56,19 @@ const InputScreen = ({ route, navigation }) => {
           value={compliment}
           onChangeText={setCompliment}
         />
-        <Button
-          title="Send"
-          style={styles.sendButton}
-          onPress={sendMessage}
-        ><Text style={styles.text}>SEND</Text></Button>
+        <View style={styles.buttonContainer}>
+          <Button
+            title="Generate"
+            style={styles.generateButton}
+            onPress={generateCompliment}>
+            <Text>GENERATE</Text>
+          </Button>
+          <Button
+            title="Send"
+            style={styles.sendButton}
+            onPress={sendMessage}
+          ><Text style={styles.text}>SEND</Text></Button>
+        </View>
       </View>
     </View>
   );
@@ -79,6 +100,14 @@ const styles = StyleSheet.create({
     fontWeight: '200'
   },
   sendButton: {
+    borderColor: "#d5c5e8",
+    backgroundColor: "#d5c5e8",
+    marginTop: 10,
+    marginBottom: 30,
+    marginLeft: 30,
+    marginRight: 30
+  },
+  generateButton: {
     borderColor: "#FCC7D9",
     backgroundColor: "#FCC7D9",
     marginTop: 10,
@@ -102,4 +131,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
+  buttonContainer: {
+    flexDirection: 'row'
+  }
 });
