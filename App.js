@@ -16,7 +16,12 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Input">
             <Stack.Screen name="Dashboard" component={DashboardScreen} />
-            <Stack.Screen name="Input" component={InputScreen} />
+            <Stack.Screen name="Input" component={InputScreen} options={{
+              title: '',
+              headerStyle: {
+                backgroundColor: '#FBE7C5',
+              },
+            }} />
           </Stack.Navigator>
         </NavigationContainer>
       </ApplicationProvider>
