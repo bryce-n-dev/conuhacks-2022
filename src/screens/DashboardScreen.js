@@ -1,11 +1,7 @@
-import { StyleSheet, View, TextInput } from 'react-native';
+import { StyleSheet, View, TextInput, Image } from 'react-native';
 import React, { useState, useRef } from 'react';
-import { ApplicationProvider, Text, Button, Divider, List, ListItem } from '@ui-kitten/components';
+import { ApplicationProvider, Text, Button, Divider, List, ListItem, Modal, Card } from '@ui-kitten/components';
 import PhoneInput from "react-native-phone-number-input";
-
-const data = new Array(1).fill({
-  name: 'Lyuba',
-});
 
 const DashboardScreen = () => {
   const [value, setValue] = useState("");
@@ -13,39 +9,22 @@ const DashboardScreen = () => {
   const [showMessage, setShowMessage] = useState(false);
   const phoneInput = useRef(PhoneInput);
 
-  const renderItemAccessory = (props) => (
-    <Button style={styles.accessoryStyle} size='tiny'>Compliment</Button>
-  );
 
-  const renderItem = ({ item, index }) => (
-    <ListItem title={`${item.name}`} 
-    accessoryRight={renderItemAccessory}/>
-  );
-
-  
+  const [visible, setVisible] = React.useState(false);
 
   return (
     <View style={styles.body}>
       <View style={styles.content}>
         <View>
           <Text style={styles.titleStyle} category='h3'>Friends</Text>
-          
         </View>
       
         <View>
           <Divider/>
-          
-          <View style={styles.friendBox} >
-            <List
-              style={styles.container}
-              data={data}
-              ItemSeparatorComponent={Divider}
-              renderItem={renderItem}
-            />
+          <View style={styles.containerImage}>
+          <Image source= {{ uri:"https://i.pinimg.com/originals/b6/dc/32/b6dc32652d284a4cc73454a6fa0884db.png" }} style={styles.styleImage}/>
           </View>
-
-          <Text style={styles.textStyle} category='s1'>Add Friend</Text>
-          <TextInput style={styles.nameInput} placeholder="Name"></TextInput>
+          <Text style={styles.textStyle} category='s1'>Compliment your friends</Text>
           <PhoneInput
             ref={phoneInput}
             defaultValue={value}
@@ -58,8 +37,21 @@ const DashboardScreen = () => {
             autoFocus
           />
         </View>
-        <Button style={styles.buttonStyle}><Text style={styles.text}>Add Friend</Text></Button>
+        <Button style={styles.buttonStyle}><Text style={styles.text}>Compliment</Text></Button>
         <View>
+          <View>
+              <Button style={styles.modalButton} onPress={() => setVisible(true)}>CLICK ME 🤩</Button>
+
+      <Modal style={styles.modal} onPress={() => setVisible()}visible={visible} backdropStyle={styles.backdrop}
+        onBackdropPress={() => setVisible(false)}>
+        <Card disabled={true}>
+          <Text>YOU SEXY BEAST! 😳</Text>
+          <Button style={styles.modalButton} onPress={() => setVisible(false)}>
+            CLOSE
+          </Button>
+        </Card>
+      </Modal>
+          </View>
         </View>
       </View>
     </View>
@@ -73,34 +65,47 @@ const styles = StyleSheet.create({
     backgroundColor: "#D5C5E8",
     flex: 1,
   },
+
+  containerImage: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  styleImage: {
+    marginTop: 20,
+    width: 200,
+    height: 200,
+  },
+
   titleStyle: {
     paddingTop: 10,
     fontWeight: 'bold',
     marginVertical: 10,
   },
+
   textStyle: {
     paddingTop: 50,
     fontWeight: 'bold',
     marginVertical: 10,
     marginBottom: 10,
   },
+
   content: {
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop: 20,
   },
+
   buttonStyle: {
     marginTop: 20,
     borderColor: "#8785A2",
     backgroundColor: "#8785A2",
   },
-  accessoryStyle: {
-    borderColor: "#8785A2",
-    backgroundColor: "#8785A2",
-  },
+
   text: {
     color: 'black',
   },
+
   nameInput: {
     shadowColor: "#000",
     shadowOpacity: 0.12,
@@ -108,13 +113,19 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     padding: 17,
   },
-  friendBox: {
-    borderColor: 'white',
-    borderWidth: 3,
-    marginTop: 50,
-    padding: 2,
+
+  modal:{
+    marginTop: 60,
+    
   },
-  container: {
-    maxHeight: 200,
+
+  modalButton:{
+    marginTop: 15,
+    borderColor: "#FDCACE",
+    backgroundColor: "#FDCACE",
+  },
+
+  backdrop: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
 });
