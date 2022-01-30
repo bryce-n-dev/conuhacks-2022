@@ -34,11 +34,12 @@ const InputScreen = ({ route, navigation }) => {
     <View style={styles.body}>
       <View style={styles.content}>
         <Text style={styles.titleStyle} category='h3'>Write your compliment!</Text>
+        <Text style={styles.subtitle} category='h6'>we'll send your friend a fun photo with your message.</Text>
         <Input
           style={styles.input}
           multiline={true}
           textStyle={{ minHeight: 200 }}
-          placeholder='Compliments go over here :p'
+          placeholder='say something nice :)'
           value={compliment}
           onChangeText={setCompliment}
         />
@@ -67,11 +68,15 @@ const styles = StyleSheet.create({
     padding: 17,
     borderColor: 'white',
     borderWidth: 1,
+    borderRadius: 15
   },
   titleStyle: {
     paddingTop: 10,
     fontWeight: 'bold',
     marginVertical: 10,
+  },
+  subtitle: {
+    fontWeight: '200'
   },
   sendButton: {
     borderColor: "#FCC7D9",

@@ -14,7 +14,7 @@ export default function App() {
     <>
       <ApplicationProvider {...eva} theme={eva.light}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Dashboard">
+          <Stack.Navigator initialRouteName="Input">
             <Stack.Screen name="Dashboard" component={DashboardScreen} />
             <Stack.Screen name="Input" component={InputScreen} />
           </Stack.Navigator>
