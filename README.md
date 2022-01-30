@@ -8,7 +8,7 @@
 
 ## What is this?
 
-SparksOfJoy is a react-native application build to spread positivity through anonymous compliments!
+SparksOfJoy is a react-native application built to spread positivity through anonymous compliments!
 
 ## How does it work?
 
