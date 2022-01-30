@@ -1,11 +1,10 @@
 import { StyleSheet, View, Alert } from 'react-native';
-import { ApplicationProvider, Text, Button, Divider, Input } from '@ui-kitten/components';
+import { Text, Button, Input } from '@ui-kitten/components';
 import React, { useState } from 'react';
 
-const InputScreen = ({ route, navigation }) => {
+const InputScreen = ({ route }) => {
   const [compliment, setCompliment] = useState('');
-  const phoneNumber = '+55555555';
-  //const { phoneNumber } = route.params;
+  const { phoneNumber } = route.params;
 
   const compliments = ['i love the way you code 🤩 ',
     'Keep working hard, you are shining! ✨',
