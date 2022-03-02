@@ -12,7 +12,7 @@ SparksOfJoy is a react-native application built to spread positivity through ano
 
 ## How does it work?
 
-See our post on devposts for more information. :)
+See our post on [Devposts](https://devpost.com/software/sparksofjoy) for more information. :)
 
 ## Who is on the team?
 
@@ -23,5 +23,5 @@ See our post on devposts for more information. :)
 
 ## Devs - Getting Started
 
-To get started, run `yarm install` then `expo start` to run the app!
+To get started, run `yarn install` then `expo start` to run the app!
 
